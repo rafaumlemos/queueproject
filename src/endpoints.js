@@ -8,7 +8,7 @@ module.exports = {
         let userByEmail = users.filter(email => email.email === req.body.email);
         if (userByEmail.length > 0) {
             res.send({
-                message: 'This email is already in use!.'
+                message: 'This email is already in use.'
             })
         } else {
             let reply = {

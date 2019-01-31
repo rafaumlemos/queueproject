@@ -26,7 +26,7 @@ Body: <br>
 { <br>
 	"nome" : "insiraonome", <br>
 	"email" : "insiraoemail", <br>
-	"genero" : "insiraogenero" <br>
+	"genero" : "masculino ou feminino" <br>
 } <br>
 
 **2 - Requisição de adição à fila :**

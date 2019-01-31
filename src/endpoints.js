@@ -10,20 +10,26 @@ module.exports = {
                 message: "Use the params correctly! Follow the documentation!"
             });
         } else {
-            let userByEmail = users.filter(email => email.email === req.body.email);
-            if (userByEmail.length > 0) {
+            if (req.body.genero.toLowerCase() !== "masculino" && req.body.genero.toLowerCase() !== "feminino") {
                 res.send({
-                    message: 'This email is already in use.'
-                })
+                    message: "Use the params correctly! Follow the documentation!"
+                });
             } else {
-                let reply = {
-                    id: Math.random() * 100000000 | 0,
-                    nome: req.body.nome,
-                    email: req.body.email,
-                    genero: req.body.genero.toLowerCase()
-                };
-                users.push(reply);
-                res.send(reply);
+                let userByEmail = users.filter(email => email.email === req.body.email);
+                if (userByEmail.length > 0) {
+                    res.send({
+                        message: 'This email is already in use.'
+                    })
+                } else {
+                    let reply = {
+                        id: Math.random() * 100000000 | 0,
+                        nome: req.body.nome,
+                        email: req.body.email,
+                        genero: req.body.genero.toLowerCase()
+                    };
+                    users.push(reply);
+                    res.send(reply);
+                }
             }
         }
     },

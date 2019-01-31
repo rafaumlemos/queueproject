@@ -44,7 +44,7 @@ module.exports = {
                     posicao: fila,
                 };
                 filaPessoas.push(reply);
-                fila = fila + 1;
+                fila++;
                 res.send([{
                     posicao: reply.posicao
                 }]);
@@ -78,7 +78,7 @@ module.exports = {
         } else {
             if (req.body.genero !== "Masculino" && req.body.genero !== "Feminino") {
                 res.send({
-                    message: "Use the params correctly! As the documentation said, you must use Masculino or Feminino to filter"
+                    message: "Use the params correctly! Follow the documentation!"
                 });
             } else {
                 let usersByGenre = filaPessoas.filter(genre => genre.genero === req.body.genero);
@@ -90,6 +90,6 @@ module.exports = {
         firstFromLine = filaPessoas.shift();
         filaPessoas.forEach(fila => fila.posicao = fila.posicao - 1);
         res.send(firstFromLine);
-        fila = fila -1;
+        fila--;
     }
 };

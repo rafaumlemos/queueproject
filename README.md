@@ -14,6 +14,10 @@ Este projeto é uma API RPC, cujo possui o objetivo de facilitar o gerenciamento
 
 
 ## Como utilizar : 
+
+Basta dar um **yarn start** e o servidor ja estará rodando, e então é só seguir os exemplos abaixo para entender como funciona a API: <br>
+
+
 **1 - Requisição de criação de usuário:**
 
 Método: POST <br>

@@ -5,20 +5,26 @@ var filaPessoas = [];
 
 module.exports = {
     async createUser(req, res) {
-        let userByEmail = users.filter(email => email.email === req.body.email);
-        if (userByEmail.length > 0) {
+        if (req.body.nome === undefined || req.body.email === undefined || req.body.genero === undefined) {
             res.send({
-                message: 'This email is already in use.'
-            })
+                message: "Use the params correctly! Follow the documentation!"
+            });
         } else {
-            let reply = {
-                id: Math.random() * 100000000 | 0,
-                nome: req.body.nome,
-                email: req.body.email,
-                genero: req.body.genero
-            };
-            users.push(reply);
-            res.send(reply);
+            let userByEmail = users.filter(email => email.email === req.body.email);
+            if (userByEmail.length > 0) {
+                res.send({
+                    message: 'This email is already in use.'
+                })
+            } else {
+                let reply = {
+                    id: Math.random() * 100000000 | 0,
+                    nome: req.body.nome,
+                    email: req.body.email,
+                    genero: req.body.genero.toLowerCase()
+                };
+                users.push(reply);
+                res.send(reply);
+            }
         }
     },
     async showLine(req, res) {
@@ -76,14 +82,8 @@ module.exports = {
                 message: "Use the params correctly! Follow the documentation."
             });
         } else {
-            if (req.body.genero !== "Masculino" && req.body.genero !== "Feminino") {
-                res.send({
-                    message: "Use the params correctly! Follow the documentation!"
-                });
-            } else {
-                let usersByGenre = filaPessoas.filter(genre => genre.genero === req.body.genero);
-                res.send(usersByGenre);
-            }
+            let usersByGenre = filaPessoas.filter(genre => genre.genero === req.body.genero.toLowerCase());
+            res.send(usersByGenre);
         }
     },
     async popLine(req, res) {
